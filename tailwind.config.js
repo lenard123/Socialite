@@ -1,9 +1,8 @@
 module.exports = {
-	content: [
-		'./resources/**/*.blade.php',
-		'./resources/**/*.js',
-		'./resources/**/*.jsx'
-	],
+	content: ["./resources/**/*.{php,jsx,js}"],
+	corePlugins: {
+		preflight: false
+	},
 	theme: {
 		extend: {},
 	},

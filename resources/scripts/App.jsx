@@ -1,6 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import RegisterPage from "./pages/register/RegisterPage";
 
 //Root Component
 export default function App()
 {
-    return <h1>Hello world!</h1>
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/register' element={<RegisterPage />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
