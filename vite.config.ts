@@ -12,4 +12,11 @@ export default defineConfig({
 			],
 		}),
 	],
+	server: {
+		host: 'localhost',
+		https: false,
+		hmr: {
+			clientPort: 443
+		}
+	}
 })
