@@ -15,9 +15,8 @@ return [
             'entrypoints' => [
                 'ssr' => 'resources/scripts/ssr.ts',
                 'paths' => [
-                    'resources/css/tailwind.css',
+                    'resources/css/app.css',
                     'resources/scripts/main.js',
-                    'resources/js/app.js',
                 ],
                 'ignore' => '/\\.(d\\.ts|json)$/',
             ],

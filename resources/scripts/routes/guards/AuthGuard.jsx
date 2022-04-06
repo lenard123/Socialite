@@ -1,10 +1,10 @@
-import useCurrentUser from "@/scripts/queries/useCurrentUser";
+import useCurrentUser from "@/scripts/states/selectors/useCurrentUser";
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function AuthGuard()
 {
-    const { data:currentUser, isSuccess } = useCurrentUser()
-    const isLoggedIn = isSuccess && currentUser !== null;
+    const currentUser = useCurrentUser()
+    const isLoggedIn = currentUser !== null;
 
     if (isLoggedIn) {
         return <Outlet />

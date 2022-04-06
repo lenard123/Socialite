@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['avatar_url'];
+
+    public function getAvatarUrlAttribute()
+    {
+        $name = urlencode($this->name);
+        return "https://avatars.dicebear.com/api/initials/{$name}.svg";
+    }
 }

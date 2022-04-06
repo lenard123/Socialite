@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient } from "react-query"
-import { fetchCurrentUser } from "../apis/authApi"
+import { fetchCurrentUser } from "@/scripts/apis/authApi"
 
 
-const useCurrentUser = () => {
+const useCurrentUserQuery = () => {
     const queryClient = useQueryClient()
     return useQuery('currentUser', fetchCurrentUser, {
         staleTime: 1000 * 60 * 60 * 2,
@@ -22,4 +22,4 @@ const useCurrentUser = () => {
     })
 }
 
-export default useCurrentUser
+export default useCurrentUserQuery

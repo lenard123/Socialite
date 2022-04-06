@@ -1,11 +1,11 @@
 import { message } from "antd"
 import { register } from "@/scripts/apis/authApi"
 import useMutation from "@/scripts/hooks/useMutation"
-import { useQueryClient } from "react-query"
+import useCurrentUserMutator from "@/scripts/states/mutators/useCurrentUserMutator"
 
 const useRegister = () => {
 
-    const queryClient = useQueryClient()
+    const mutateCurrentUser = useCurrentUserMutator()
 
     return useMutation(register, {
         retry: 0,
@@ -13,7 +13,7 @@ const useRegister = () => {
             message.success('Registered Successfully')
 
             //This will also cause the page to redirect because of the Guest Guard
-            queryClient.setQueryData('currentUser', user)
+            mutateCurrentUser(user)
         }
     })
 }
