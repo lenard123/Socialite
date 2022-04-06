@@ -21,3 +21,8 @@ export const register = async ({ email, name, password, password_confirmation })
         password_confirmation
     })
 }
+
+export const fetchCurrentUser = async () => {
+    await requestCookie()
+    return await Http.get('/user')
+}

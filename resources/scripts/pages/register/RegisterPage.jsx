@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet'
-import { Button, Card, Form, Input, message } from 'antd'
+import { Button, Card, Form, Input } from 'antd'
 import { Link, Navigate } from 'react-router-dom'
-import useRegister from '@/scripts/queries/useRegister'
+import useRegister from './useRegister'
 import validationRules  from './validationRules'
 
 export default function RegisterPage() {

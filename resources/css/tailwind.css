@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+html {
+    --header-height: 4rem;
+}
+
+.header-height {
+    height: var(--header-height);
+}

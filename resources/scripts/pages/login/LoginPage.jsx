@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet'
 import { Button, Card, Form, Input } from 'antd'
 import { Link, Navigate } from 'react-router-dom'
 import rules from './validationRules'
-import useLogin from '@/scripts/queries/useLogin'
+import useLogin from './useLogin'
 
 export default function LoginPage() {
 
@@ -11,10 +11,6 @@ export default function LoginPage() {
     const handleSubmit = (formData) => {
         if (isLoading) return;
         mutate(formData)
-    }
-
-    if (isSuccess) {
-        return <Navigate to='/' />
     }
 
     return (
