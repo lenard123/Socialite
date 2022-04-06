@@ -6,18 +6,18 @@ const Http = axios.create({
     withCredentials: true
 })
 
-const successMiddleware = (response) => response
+const successMiddleware = (response) => Promise.resolve(response.data)
 const errorMiddleware = (error) => {
-    error.validationErrors = {}
+    let validationErrors = {}
     if (error?.response.status === 422) {
         const errors = error.response.data.errors
-        error.validationErrors = Object.keys(errors).reduce( (acm, field) => ({
+        validationErrors = Object.keys(errors).reduce( (acm, field) => ({
             ...acm,
             [field]: {validateStatus: 'error', help: errors[field].join('\n')}
         }), {})
     }
 
-    return Promise.reject(error)
+    return Promise.reject({...error, validationErrors})
 }
 
 Http.interceptors.response.use(successMiddleware, errorMiddleware)

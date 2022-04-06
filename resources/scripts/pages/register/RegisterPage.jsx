@@ -1,25 +1,20 @@
 import { Helmet } from 'react-helmet'
-import { Button, Card, Form, Input } from 'antd'
-import { Link } from 'react-router-dom'
+import { Button, Card, Form, Input, message } from 'antd'
+import { Link, Navigate } from 'react-router-dom'
 import useRegister from '@/scripts/queries/useRegister'
 import validationRules  from './validationRules'
-import { useState, useEffect } from 'react'
 
 export default function RegisterPage() {
 
-    const [validationErrors, setValidationErrors] = useState({})
-    const { mutate, error, status, isError, isLoading } = useRegister()
+    const { mutate, validationErrors, isLoading, isSuccess } = useRegister()
 
-    useEffect(() => {
-        if (isError) {
-            setValidationErrors(error.validationErrors)
-        }
-    }, [status])
-
-    const handleSubmit = (data) => {
+    const handleSubmit = (formData) => {
         if (isLoading) return
-        setValidationErrors({})
-        mutate(data)
+        mutate(formData)
+    }
+
+    if (isSuccess) {
+        return <Navigate to='/' />
     }
 
     return (
