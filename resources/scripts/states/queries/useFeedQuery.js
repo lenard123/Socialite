@@ -8,7 +8,7 @@ const fetch = ({pageParam = 1}) => {
 }
 
 const useFeedQuery = () => {
-    const query = useInfiniteQuery(['feed'],  fetch, {
+    const query = useInfiniteQuery(['posts', 'feed'],  fetch, {
         staleTime: 1000 * 60 * 5,
         getNextPageParam: (lastPage) => {
             if (lastPage.current_page < lastPage.last_page) {

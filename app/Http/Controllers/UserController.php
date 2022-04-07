@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function feed()
     {
-        return Post::paginate(2);
+        return Post::latest()->paginate(2);
     }
 }
