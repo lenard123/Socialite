@@ -22,33 +22,40 @@ export default function LoginPage() {
                 <Card title='Socialite' className='max-w-md mx-auto rounded'>
                     <Form onFinish={handleSubmit} layout='vertical'>
 
-                        <Form.Item 
-                            rules={rules.email} 
-                            className='mb-4' 
-                            name='email' 
+                        <Form.Item
+                            rules={rules.email}
+                            className='mb-4'
+                            name='email'
                             label='Email'
                             {...validationErrors.email}>
                             <Input className='rounded' type='email' size='large' placeholder='Please enter your email here' />
                         </Form.Item>
 
-                        <Form.Item 
-                            rules={rules.password} 
-                            className='mb-4' 
-                            name='password' 
+                        <Form.Item
+                            rules={rules.password}
+                            className='mb-4'
+                            name='password'
                             label='Password'
                             {...validationErrors.password}>
                             <Input.Password className='rounded' size='large' placeholder='Please enter your password here' />
                         </Form.Item>
 
                         <Form.Item>
-                            <Button loading={isLoading} className='rounded' size='large' block  type='primary' htmlType='submit'>
+                            <Button loading={isLoading} className='rounded' size='large' block type='primary' htmlType='submit'>
                                 Sign in
                             </Button>
-                            <p className='mt-2 text-center'>
-                                <span>Don't have an account? Sign up </span>
-                                <Link className='link' to='/register'>here</Link>.
-                            </p>
                         </Form.Item>
+                        <Form.Item>
+                            <Button href='/github/redirect' className='rounded' size='large' block type='link'>
+                                Sign in with Github
+                            </Button>
+
+                        </Form.Item>
+                        <p className='mt-2 text-center'>
+                            <span>Don't have an account? Sign up </span>
+                            <Link className='link' to='/register'>here</Link>.
+                        </p>
+
                     </Form>
                 </Card>
             </div>

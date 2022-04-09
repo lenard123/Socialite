@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Traits\CanLike;
 use App\Models\Traits\CanPost;
+use App\Models\Traits\HasLikes;
 use App\Models\Traits\HasPosts;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +14,13 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasPosts, CanPost;
+    use CanPost,
+        CanLike,
+        HasApiTokens, 
+        HasFactory, 
+        HasPosts,
+        HasLikes, 
+        Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'github_id'
     ];
 
     /**
@@ -46,9 +55,28 @@ class User extends Authenticatable
 
     protected $appends = ['avatar_url'];
 
+    protected $with = ['avatar'];
+
+    public function avatar()
+    {
+        return $this->belongsTo(Image::class)->withDefault([
+            'type' => 'absolute',
+            'reference' => 'https://res.cloudinary.com/djasbri35/image/upload/c_crop,h_1050,w_1050/v1649516817/global/default_avatar.png'
+        ]);
+    }
+
     public function getAvatarUrlAttribute()
     {
-        $name = urlencode($this->name);
-        return "https://avatars.dicebear.com/api/initials/{$name}.svg";
+        return $this->avatar->url;
     }
+
+    public function setAvatar(string $url)
+    {
+        $avatar = $this->avatar;
+        $avatar->setAbsolute($url);
+
+        $this->avatar()->associate($avatar);
+        $this->save();
+    }
+
 }

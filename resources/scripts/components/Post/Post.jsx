@@ -2,10 +2,11 @@ import { CommentOutlined, LikeOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import moment from 'moment'
 import { Link } from "react-router-dom";
+import LikeButton from "./children/LikeButton";
 
 export default function Post({ post }) {
 
-    const { author } = post
+    const { author, likers_count } = post
 
     return (
         <div className='max-w-xl mx-auto flex flex-col w-full sm:rounded-lg bg-white border border-solid p-4 pb-1 border-gray-300'>
@@ -26,12 +27,12 @@ export default function Post({ post }) {
             </div>
 
             <div className='text-xs flex justify-between py-1'>
-                <span>2 Likes</span>
+                <span>{ likers_count > 0 && `${likers_count} ${likers_count > 1 ? 'Likes' : 'Like'}` }</span>
                 <span>3 Comments</span>
             </div>
 
             <div className='flex gap-2 text-lg py-1 border-t border-gray-300'>
-                <Link to={`/posts/${post.id}`} className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><LikeOutlined /></Link>
+                <LikeButton post={post}/>
                 <Link to={`/posts/${post.id}`} className='flex-grow py-1 text-center bg-white hover:bg-gray-100 rounded-full'><CommentOutlined /></Link>
             </div>
 

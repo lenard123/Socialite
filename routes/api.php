@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,4 +26,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/user/feed', [UserController::class, 'feed']);
 
     Route::post('/posts', [PostController::class, 'create']);
+
+    Route::post('/like', [LikeController::class, 'like']);
+    Route::delete('/like', [LikeController::class, 'unlike']);
 });

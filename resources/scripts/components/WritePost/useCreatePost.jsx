@@ -1,16 +1,16 @@
 import { createPost } from "@/scripts/apis/postApi"
 import useMutation from "@/scripts/hooks/useMutation"
+import usePostMutator from "@/scripts/states/mutators/usePostMutator"
 import { message } from "antd"
 import { useState } from 'react'
-import { useQueryClient } from "react-query"
 
 const useCreatePost = () => {
     const [content, setContent] = useState('')
-    const queryClient = useQueryClient()
+    const { prependPost } = usePostMutator()
     const mutation = useMutation(createPost, {
         retry: 0,
         onSuccess: (_data) => {
-            queryClient.invalidateQueries(['posts', 'feed'])
+            prependPost(_data)
             setContent('')
             message.success('Posted successfully')
         }

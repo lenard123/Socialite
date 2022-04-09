@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => 'https://8000-lenard456-socialite-m6zrfopto2e.ws-us39.gitpod.io/github/callback',
+        'redirect_uri' => 'https://8000-lenard456-socialite-m6zrfopto2e.ws-us39.gitpod.io/github/callback',
+    ],
+
 ];

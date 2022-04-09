@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Contracts\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+class Post extends Likeable
 {
     use HasFactory, SoftDeletes;
 
     protected $with = ['author'];
+
+    protected $withCount = ['likers'];
+
+    protected $appends = ['is_like'];
 
     public function author()
     {
